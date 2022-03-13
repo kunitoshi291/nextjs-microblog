@@ -29,62 +29,24 @@ export default function Home({allPostsData}) {
     <section>
       <h2>📝エンジニアのブログ</h2>
       <div className={styles.grid}>
-      <article>
-        <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg"  alt="" className={styles.thumbnailImage}/>
-        </Link>
-        <Link href="/" passHref>
-          <a className={utilStyle.boldText}>
-            SSGとSSRの使い分けの場面はいつなのか？
-          </a>
-        </Link>
-        <br />
-        <small className={utilStyle.lightText}>March 9, 2022</small>
-      </article>
-      <article>
-        <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg" alt=""
-        className={styles.thumbnailImage}
-        />
-        </Link>
-        <Link href="/" passHref>
-          <a className={utilStyle.boldText}>
-            SSGとSSRの使い分けの場面はいつなのか？
-          </a>
-        </Link>
-        <br />
-        <small className={utilStyle.lightText}>March 9, 2022</small>
-      </article>
-      <article>
-        <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg" alt=""
-        className={styles.thumbnailImage}
-        />
-        </Link>
-        <Link href="/" passHref>
-          <a className={utilStyle.boldText}>
-            SSGとSSRの使い分けの場面はいつなのか？
-          </a>
-        </Link>
-        <br />
-        <small className={utilStyle.lightText}>March 9, 2022</small>
-      </article>
-      <article>
-        <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg" alt=""
-        className={styles.thumbnailImage}
-        />
-        </Link>
-        <Link href="/" passHref>
-          <a className={utilStyle.boldText}>
-            SSGとSSRの使い分けの場面はいつなのか？
-          </a>
-        </Link>
-        <br />
-        <small className={utilStyle.lightText}>March 9, 2022</small>
-      </article>
+        {allPostsData.map(({id, title, date, thumbnail})=>(
+          <article key={id}>
+            <Link href={`/posts/${id}`} passHref>
+              <img 
+              src={`${thumbnail}`}  alt="" className={styles.thumbnailImage}
+              />
+            </Link>
+            <Link href={`/posts/${id}`} passHref>
+              <a className={utilStyle.boldText}>
+                {title}
+              </a>
+            </Link>
+           <br />
+            <small className={utilStyle.lightText}>{date}</small>
+         </article>
+        ))}
+      
     </div>
     </section>
-    
   </Layout>
 }
