@@ -4,8 +4,21 @@ import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import Layout from '../compornents/Layout'
 import utilStyle from "../styles/utils.module.css";
+import {getPostsData} from  "../lib/post";
 
-export default function Home() {
+// SSGの場合
+export async function getStaticProps() {
+  const allPostsData = getPostsData();// id, title, date, thumbnail
+  console.log(allPostsData);
+
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
+
+export default function Home({allPostsData}) {
   //ブログ構成のレイアウト
   return <Layout>
     <section className = {utilStyle.headingMd}>
@@ -18,7 +31,19 @@ export default function Home() {
       <div className={styles.grid}>
       <article>
         <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg" 
+        <img src="/images/thumbnail01.jpg"  alt="" className={styles.thumbnailImage}/>
+        </Link>
+        <Link href="/" passHref>
+          <a className={utilStyle.boldText}>
+            SSGとSSRの使い分けの場面はいつなのか？
+          </a>
+        </Link>
+        <br />
+        <small className={utilStyle.lightText}>March 9, 2022</small>
+      </article>
+      <article>
+        <Link href="/" passHref>
+        <img src="/images/thumbnail01.jpg" alt=""
         className={styles.thumbnailImage}
         />
         </Link>
@@ -32,7 +57,7 @@ export default function Home() {
       </article>
       <article>
         <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg" 
+        <img src="/images/thumbnail01.jpg" alt=""
         className={styles.thumbnailImage}
         />
         </Link>
@@ -46,21 +71,7 @@ export default function Home() {
       </article>
       <article>
         <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg" 
-        className={styles.thumbnailImage}
-        />
-        </Link>
-        <Link href="/" passHref>
-          <a className={utilStyle.boldText}>
-            SSGとSSRの使い分けの場面はいつなのか？
-          </a>
-        </Link>
-        <br />
-        <small className={utilStyle.lightText}>March 9, 2022</small>
-      </article>
-      <article>
-        <Link href="/" passHref>
-        <img src="/images/thumbnail01.jpg" 
+        <img src="/images/thumbnail01.jpg" alt=""
         className={styles.thumbnailImage}
         />
         </Link>
