@@ -4,16 +4,16 @@ import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import Layout from '../compornents/Layout'
 import utilStyle from "../styles/utils.module.css";
-import {getPostsData} from  "../lib/post";
+import {getSortedPostsData} from  "../lib/post";
 
 // SSGの場合
 export async function getStaticProps() {
-  const allPostsData = getPostsData();// id, title, date, thumbnail
+  const allPostsData = getSortedPostsData();// id, title, date, thumbnail
   console.log(allPostsData);
 
   return {
     props: {
-      allPostsData,
+      allPostsData, 
     },
   };
 }
@@ -54,7 +54,6 @@ export default function Home({allPostsData}) {
             <small className={utilStyle.lightText}>{date}</small>
          </article>
         ))}
-      
     </div>
     </section>
   </Layout>
