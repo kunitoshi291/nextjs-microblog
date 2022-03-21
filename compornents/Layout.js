@@ -2,20 +2,37 @@ import Head from "next/head";
 import { children } from "react/cjs/react.development";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
+import Link from "next/link";
 
 const name = "Kuni san";
 export const siteTitle = "Next.js Blog";
-function Layout({ children }) {
+function Layout({ children, home }) {
     return (
         <div className={styles.container}>
             <Head>
                 <link rel="icon" href = "/favicon.ico" />
             </Head>
             <header className={styles.header}>
-                <img src = "/images/profile.png" className={utilStyles.borderCircle} />
-                <h1 className={utilStyles.heading2Xl}>{name}</h1>
+                {home ? (
+                 <>
+                     <img alt="" src = "/images/profile.png" className={`${utilStyles.borderCircle}${styles.headerHomeImage}` } 
+                     />
+                     <h1 className={utilStyles.heading2Xl}>{name}</h1>
+                 </>   
+                ): (
+                <>
+                     <img alt="" src = "/images/profile.png" className={`${utilStyles.borderCircle}`} 
+                     />
+                     <h1 className={utilStyles.heading2Xl}>{name}</h1>
+                </>
+                )}
+               
+                
             </header>
             <main>{children}</main>
+            {!home && (
+                <Link href="/">⇦ ホームへ戻る</Link>
+            )}
         </div>
     );
 }

@@ -2,14 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-import Layout from '../compornents/Layout'
+import Layout, { siteTitle } from '../compornents/Layout'
 import utilStyle from "../styles/utils.module.css";
 import {getSortedPostsData} from  "../lib/post";
 
 // SSGの場合
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();// id, title, date, thumbnail
-  console.log(allPostsData);
+  // console.log(allPostsData);
 
   return {
     props: {
@@ -29,7 +29,12 @@ export async function getStaticProps() {
 
 export default function Home({allPostsData}) {
   //ブログ構成のレイアウト
-  return <Layout>
+  return <Layout home>
+    <Head>
+      <title>
+        {siteTitle}
+      </title>
+    </Head>
     <section className = {utilStyle.headingMd}>
       <p>
         趣味のプログラミングを通して、学んだことをアウトプットします。
